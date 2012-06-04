@@ -1,0 +1,65 @@
+<div class="container_12">
+    <div class="grid_12">
+        <h2 id="page-heading">Create an Star</h2>
+    </div>
+    <div class="clear"></div>
+</div>
+<style>
+    <%-  partial(  'style.html' ) %>
+</style>
+
+<div class="container_12">
+    <div class="grid_4">
+        <div class="box">
+
+            <h2>Create a Character</h2>
+
+            <div class="block" style="margin: 0px">
+                <p>Start your actor!</p>
+                <ul class="wizard">
+                    <li id="bio_step" class="active">Biography <span id="bio_status"></span></li>
+                    <li id="trait_step" style="display: none">Traits <span id="traits_status"></span></li>
+                    <li id="per_step" style="display: none">Personality <span id="per_status"></span></li>
+                    <li id="appearance_step" style="display: none">Appearance <span id="appearance_status"></span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <%- partial('wizard_frame.html', [
+    {label: "Biography",  id: "bio_panel",  body: partial('bio_form.html'), active: true },
+    {label: "Actor Type", id: "type_panel", body: partial('type_form.html') }
+    ]) %>
+
+    <div class="grid_8" style="min_width: 530px; display: none">
+        <div class="box">
+            <h2>Choose your personality</h2>
+
+            <div class="block">
+                <p>There are no "good" or "bad" personalities; personality determines
+                    how good a match you are for a given role. </p>
+
+                <div id="actor_per"></div>
+
+                <p>
+                    You don't have to have a &quot;Balanced&quot; personality.
+                </p>
+                <ul>
+                    <li>If your personality is too mild, you aren't going to be a great fit for any leading roles.
+                    </li>
+                    <li>If your personality is too strong, you'll be perfect for a very few roles, but have a
+                        narrower
+                        range.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+<!-- Start Random Name Generator -->
+<script LANGUAGE="JavaScript">
+//<%- partial('script.html') %>
+</script>

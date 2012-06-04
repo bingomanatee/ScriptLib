@@ -1,0 +1,13 @@
+{
+    "route":"/scripts.html",
+    "head_javascript":[
+        {
+            "/js/libs/angular-1.0.0rc10/":[
+                "angular-1.0.0rc10.min.js",
+                "angular-resource-1.0.0rc10.js"]
+        },
+        {
+            "/sl/js/ng/": ["script_con.js", "script_model.js"]
+        }
+    ]
+}

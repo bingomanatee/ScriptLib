@@ -1,0 +1,94 @@
+<!--  <% if (false ) { %> -->
+<script type="text/javascript">
+    //   <!--  <% } %> -->
+
+    $(function () {
+        var form = $('#tt_form');
+        if (form) {
+            form.submit(function () {
+                console.log('form action: ', form.attr('action'), form);
+                $.post(form.attr('action'), form.serialize(),
+                        function (data) {
+                            console.log(data);
+                        })
+
+                return false;
+            })
+        }
+    })
+
+    function balance_traits() {
+        trait_layer.balance_ranks();
+        return false;
+    }
+
+    function save_trait_template() {
+        var name = $('#tt_name').val();
+        var notes = $('#tt.notes').val();
+
+        var td = traits.trait_data();
+
+        var post_data = {
+            name:name,
+            notes:notes,
+            traits:traits
+        };
+
+        for (t in td) {
+            post_data[t.toLowerCase()] = td[t];
+        }
+
+        if (name) {
+            jQuery.post('/admin/gw/trait_template', post_data, function (data) {
+                console.log('new template: ', data);
+            }, 'json');
+        }
+        return false;
+    }
+
+    function choose_rand_name() {
+        var name = random_name($('input[name=actor\[gender\]]:checked').val());
+        $('#actor_name').val(name);
+    }
+
+    function set_gender(g) {
+        $('.gender_icon').removeClass('active_g');
+        $('#' + g + '_rb').attr('checked', true);
+        $('#' + g + '_icon').addClass('active_g');
+    }
+
+    function validate_bio() {
+        var valid = true;
+        if (!$('#actor_name').val()) {
+            valid = false;
+        }
+
+        if (valid) {
+            $('#bio_panel_next').show();
+        } else {
+            $('#bio_panel_next').hide();
+        }
+    }
+
+    var wizard_items = ['bio_panel', 'type_panel'];
+    function wizard_next(current) {
+        var next = false;
+        wizard_items.forEach(function (t) {
+
+            if (next) {
+                $('#' + t ).show();
+                next = false;
+            } else {
+                $('#' + t).hide();
+            }
+
+            if (t == current) {
+                next = true;
+            }
+
+        })
+    }
+
+    //    <!--  <% if (false ) { %> -->
+</script>
+<!--  <% } %> -->

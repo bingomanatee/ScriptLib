@@ -1,0 +1,27 @@
+<%- helpers.banner_menu('Manage Glitterwood', 'gw_admin_menu', 'admin_gw_name_ideas_list') %>
+
+<!-- -----------------------------------  LIST ----------------------------------- -->
+
+<div class="block"><h1>Name Ideas</h1>
+    <table class="display" id="name_idea_list">
+        <thead>
+        <th>_id</th>
+        <th>Name</th>
+        <th>Gender</th>
+        </thead>
+        <tbody>
+        <tr>
+            <td>loading data...</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <th>_id</th>
+        <th>Name</th>
+        <th>Gender</th>
+        </tfoot>
+    </table>
+</div>
+
+<%- partial ('add_names.html') %>
+
+<%- partial('details.html') %>

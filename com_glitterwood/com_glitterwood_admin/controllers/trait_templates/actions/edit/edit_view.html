@@ -1,0 +1,33 @@
+<%- helpers.banner_menu('Edit Role', 'member_admin_menu', 'admin_members_roles') %>
+<br clear="all"/>
+<div class="box form_box">
+
+    <h2>Edit Role
+        <span class="l"></span>
+        <span class="r"></span>
+    </h2>
+
+    <div class="block">
+        <form action="/admin/gw/trait_template/<%- trait_template._id %>/edit" class="form_place" method="POST">
+
+            <%- partial('form/text_field.html', [
+            {  id: 'tt_form__id',      name: 'trait_template[_id]',       label: '_id',       value: trait_template._id,      readonly: true },
+            {  id: 'tt_form_name',     name: 'trait_template[name]',      label: 'Name',      value: trait_template.name ,      },
+            {  id: 'tt_form_notes',    name: 'trait_template[notes]',     label: 'Notes',     value: trait_template.notes  ,  field_type: "textarea" },
+            {  id: 'tt_form_icon_female',  name: 'trait_template[icon_female]',   label: 'Icon(female)',    value: trait_template.icon_female ,    },
+            {  id: 'tt_form_icon_male',    name: 'trait_template[icon_male]',     label: 'Icon(male)',      value: trait_template.icon_male ,      },
+            {  id: 'tt_form_looks',    name: 'trait_template[looks]',     label: 'Looks',     value: trait_template.looks ,     },
+            {  id: 'tt_form_charm',    name: 'trait_template[charm]',     label: 'Charm',     value: trait_template.charm ,     },
+            {  id: 'tt_form_talent',   name: 'trait_template[talent]',    label: 'Talent',    value: trait_template.talent ,    },
+            {  id: 'tt_form_stamina',  name: 'trait_template[stamina]',   label: 'Stamina',   value: trait_template.stamina ,   },
+            {  id: 'tt_form_smarts',   name: 'trait_template[smarts]',    label: 'Smarts',    value: trait_template.smarts ,    }
+
+            ] ) %>
+
+            <%- partial('form/button_row.html', [
+            {class_name: 'medium orange', label: 'Update', button_type: 'submit'}
+            ]) %>
+
+        </form>
+    </div>
+</div>

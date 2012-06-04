@@ -1,0 +1,51 @@
+<%- helpers.banner_menu('Edit Role', 'member_admin_menu', 'admin_members_roles') %>
+<br clear="all"/>
+<div class="box form_box">
+
+    <h2>Edit Role
+        <span class="l"></span>
+        <span class="r"></span>
+    </h2>
+
+    <div class="block">
+        <form action="/admin/member_role/<%- role._id %>/edit" class="form_place" method="POST">
+            <input type="hidden" name="role[_id]" value="<%- role._id %>"/>
+
+            <%- partial('form/text_field.html', [{
+            id: 'role_form_name',
+            name: 'role[name]',
+            label: 'Name',
+            readonly: true,
+            value: role.name
+            },
+            {
+            id: 'role_form_label',
+            name: 'role[label]',
+            value: role.label,
+            label: 'Label'
+            }
+            ] ) %>
+            <h2>Tasks</h2>
+            <%- partial('task.html', tasks) %>
+            <%- partial('form/button_row.html', [
+            {class_name: 'medium orange', label: 'Update', button_type: 'submit'}
+            ]) %>
+
+        </form>
+    </div>
+</div>
+
+<script language="JavaScript">
+$(function(){
+var task = <%- JSON.stringify(role.tasks) %>;
+    task.forEach(function(t){
+        t.verbs.forEach(function(v){
+            var cid = '#task_checkbox_' + t.task + '_' + v;
+            console.log('cid: ' + cid);
+            var cb = $(cid);
+            cb.prop('checked', true);
+        });
+    });
+})
+
+</script>

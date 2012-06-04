@@ -1,0 +1,54 @@
+
+<div class="grid_8" style="min-width:530px; display: none">
+    <div class="box">
+
+        <h2>Traits</h2>
+
+        <div class="block">
+            <p>Choose your fundamental strengths. Each trait can help you in different ways.</p>
+
+            <div id="actor_traits"></div>
+            <button onclick="balance_traits(); return false">Return Traits</button>
+
+
+            <% if (helpers.can('edit game_data')){ %>
+
+            <form method="post" action="trait_template" id="tt_form">
+                    <span style="display: none">
+
+                    <p><label>Looks</label>
+                        <input type="text" name="trait_template[looks]" id="tt_looks" value="10"/>
+
+                    <p><label>Charm</label>
+                        <input type="text" name="trait_template[charm]" id="tt_charm" value="10"/>
+
+                    <p><label>Talent</label>
+                        <input type="text" name="trait_template[talent]" id="tt_talent" value="10"/>
+
+                    <p><label>Smarts</label>
+                        <input type="text" name="trait_template[smarts]" id="tt_smarts" value="10"/>
+
+                    <p><label>Stamina</label>
+                        <input type="text" name="trait_template[stamina]" id="tt_stamina" value="10"/>
+                    </span>
+                <fieldset class="inline">
+                    <legend>Save current traits to template</legend>
+                    <p>
+                        <label>Name</label>
+                        <input type="text" name="trait_template[name]" id="tt_name"/>
+                    </p>
+
+                    <p>
+                        <label>Description</label>
+                        <textarea name="trait_template[notes]" id="tt_notes"></textarea>
+                    </p>
+
+                    <p>
+                        <button onclick="save_trait_template(); return false">Save Trait Template</button>
+                    </p>
+                </fieldset>
+            </form>
+            <% } %>
+        </div>
+    </div>
+</div>

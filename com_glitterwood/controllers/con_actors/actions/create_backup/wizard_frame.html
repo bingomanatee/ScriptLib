@@ -1,0 +1,20 @@
+<div class="grid_8" style="min-width:530px; <% if (!wizardFrame.active){ %> display: none <% } %>"
+     id="<%- wizardFrame.id %>">
+    <div class="box">
+        <h2><%- wizardFrame.label %></h2>
+        <form class="wizard_form" onsubmit="return false">
+            <fieldset class="inline">
+                <div class="block" style="margin: 0px" >
+                    <%- wizardFrame.body %>
+
+                    <p class="form_wizard">
+                        <label>&nbsp;</label>
+                        <button id="<%- wizardFrame.id %>_next" style="display: none;" class="next"
+                                onclick="wizard_next('<%- wizardFrame.id %>'); return false">Continue
+                        </button>
+                    </p>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

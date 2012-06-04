@@ -1,0 +1,11 @@
+{
+    "javascript":[
+        "/js/gw/libs/kinetic/kinetic-v3.9.5.js",
+        "/js/gw/index.js",
+        "/js/gw/actor/traits/Templates.js",
+        "/js/gw/actor/bio/Bio.js",
+        "/js/gw/Spot.js"
+    ],
+    "method":"*",
+    "get_route":"/actor/bio/create"
+}

@@ -1,0 +1,20 @@
+<%- helpers.banner_menu('Manage Members', 'member_admin_menu', 'admin_members_task') %>
+
+<div class="container_9">
+    <div class="box">
+        <h2>Task Detail
+            <span class="l"></span>
+            <span class="r"></span>
+        </h2>
+        <%- partial('ticket/row.html', [
+        {label: '_id', value: task._id},
+        {label: 'Name', value: task.name},
+        {label: 'Label', value: task.label}]) %>
+
+        <%- partial('form/button_row.html', [
+        {class_name: 'medium', label: 'Return to list', link: '/admin/member_tasks/list'},
+        {class_name: 'medium orange', label: 'Edit', link: '/admin/member_task/' + task._id + '/edit'},
+        {class_name: 'medium red', label: 'Delete', link: '/admin/member_task/' + task._id + '/delete'}
+        ]) %>
+    </div>
+</div>

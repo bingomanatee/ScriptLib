@@ -1,0 +1,130 @@
+<div class="twelve columns">
+    <div style="position: relative">
+        <div id="creation">
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(function () {
+        GLITTERWOOD.util.comp_to_stage({
+            x:1000,
+            y:1000,
+            stage:'creation',
+            panel:'body',
+            component:GLITTERWOOD.views.ActorBody,
+            init:{gender:'male', y:200, pants:'black',
+            on_done: function(body){
+                this.loop(
+                        [
+                            {
+                                name: 'first frame - stand',
+                                legs: {
+                                    animation: 'stand'
+                                },
+                                frame: 0,
+                                torso:{r:0},
+                                left_arm:{r:70, wrist:{r:45}},
+                                right_arm:{r:-70, wrist:{r:45}}
+                            },
+                            {
+                                name: 'running ',
+                                legs: {
+                                    animation: 'run'
+                                },
+                                frame: 1000
+                            },
+                            {
+                                name: 'second stand',
+                                legs: {
+                                    animation: 'stand'
+                                },
+                                frame: 4000
+                            },
+
+                            {
+                                name: 'wave 1 half up',
+                                left_arm: {r: 0, wrist: {r: -90}},
+                                frame: 5000
+                            },
+
+                            {
+                                name: 'wave 2 wave a',
+                                left_arm: {r: -50, wrist: {r: -40}},
+                                frame: 5300
+                            },
+
+                            {
+                                name: 'wave 3 wave b',
+                                left_arm: {r: -70, wrist: {r: 0}},
+                                frame: 5600
+                            },
+
+                            {
+                                name: 'wave 4 wave a',
+                                left_arm: {r: -70, wrist: {r: -40}},
+                                frame: 5900
+                            },
+
+                            {
+                                name: 'wave 5 wave b',
+                                left_arm: {r: -70, wrist: {r: 0}},
+                                frame: 6200
+                            },
+
+                            {
+                                name: 'wave 6 wave a',
+                                left_arm: {r: -70, wrist: {r: -40}},
+                                frame: 6500
+                            },
+
+                            {
+                                name: 'wave 7 half back',
+                                left_arm: {r: 0, wrist: {r: -90}},
+                                frame: 7000
+                            },
+                            {
+                                name: 'last frame - stand',
+                                legs: {
+                                    animation: 'stand'
+                                },
+                                frame: 7500,
+                                torso:{r:0},
+                                left_arm:{r:70, wrist:{r:45}},
+                                right_arm:{r:-70, wrist:{r:45}}
+                            },
+                        ],
+                        9000
+                );
+
+                this.getStage().onFrame(function(f){
+                    GLITTERWOOD.util.animate(f);
+                })
+
+                this.getStage().start();
+            }
+        }
+    });
+
+
+
+        /*
+      GLITTERWOOD.panels.body.pose({
+          torso:{rotation:0},
+          left_arm:{rotation:70, wrist:{rotation:45}},
+          right_arm:{rotation:-70, wrist:{rotation:45}}
+      })
+
+      setTimeout(function(){
+          GLITTERWOOD.panels.body.pose({
+            legs: {
+                animation: 'stand'
+            }
+          })
+
+      }, 5000); */
+
+    });
+
+</script>

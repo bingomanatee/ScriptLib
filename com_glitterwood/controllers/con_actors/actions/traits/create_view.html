@@ -1,0 +1,57 @@
+<div class="twelve columns">
+    <div style="position: relative">
+        <div id="creation">
+
+            <script language="javascript">
+                function suggest_name() {
+                    $('#bio_name').val('foo bar');
+                    return false;
+                }
+            </script>
+
+        </div>
+        <form id="bio_form" action="/gw/actor/bio/traits" method="post"
+              style="display: none; position: absolute; top: 100px; left: 50px; width: 400px">
+            <div class="dialog">
+                <p>
+                    <label>Gender</label>
+                    <input type="text" name="bio[gender]" id="bio_gender" style="width: 180px" readonly="readonly"/>
+                </p>
+
+                <p>
+                    <label>Name</label>
+                    <a class="button" style="float: right"
+                       onclick="return GLITTERWOOD.panels['bio'].suggest_name()">Suggest</a>
+                    <input type="text" name="bio[name]" id="bio_name" style="width: 180px"
+                           onchange="GLITTERWOOD.panels['bio'].bio_validate()"
+                           onkeydown="GLITTERWOOD.panels['bio'].bio_validate()" />
+                </p>
+
+                <p>
+                    <button type="reset" name="cancel" onclick="$('#bio_form').hide()">Oops! Switch Gender</button>
+                    <button name="continue" id="bio_continue" type="submit" style="float: right; display: none">
+                        Continue
+                    </button>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(function () {
+        GLITTERWOOD.util.comp_to_stage({
+            x:500,
+            y:300,
+            stage:'creation',
+            panel:'bio',
+            component:GLITTERWOOD.views.ActorBio,
+            init:{}
+        });
+
+        GLITTERWOOD.stages['creation'].draw();
+
+    })
+
+</script>

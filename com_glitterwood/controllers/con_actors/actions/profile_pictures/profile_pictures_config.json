@@ -1,0 +1,4 @@
+{
+    "route": "/actor/bio/picture",
+    "javascript": ["/js/gw/actor/avatar/Image.js"]
+}

@@ -1,0 +1,268 @@
+<div class="twelve columns">
+    <h1>Create a Character!</h1>
+
+    <span id="bio"></span>
+    <span id="bio2"></span>
+    <span id="bio3"></span>
+</div>
+<br clear="all" />
+<!-- --------------------- ICONS --------------- -->
+<div class="twelve columns" id="icons" style="display: none; position: relative; width: 100%">
+    <br clear="all" class="clearfix" />
+</div>
+<div class="twelve columns" style="position: relative" id="creation_frame">
+    <div>
+        <div id="creation" style="position: absolute; top: 0; left: 0">
+
+        </div>
+        <!-- end creation -->
+
+        <p>
+            <small>
+                <b>Note</b> - you'll be using your facebook profile picture
+                for your avatar icons so keep that in mind when choosing a gender!
+            </small>
+        </p>
+
+        <p style="display: none" id="prompt">Please
+            <a class="button"
+               href="http://www.facebook.com/dialog/oauth/?client_id=<%- app_id %>&redirect_uri=http://glitterwood.com/actor/bio/create&state=<%- Math.random() %>&scope=user_photos">Authorize
+                use of Pictures</a> so we can use your profile picture as an avatar icon</p>
+
+        <form id="bio_form" style="display: none; position: absolute; width: 100%">
+            <div class="dialog">
+                <p>
+                    <label>Gender</label>
+                    <input type="text" name="bio[gender]" id="bio_gender" style="width: 180px" readonly="readonly"/>
+                </p>
+
+                <p>
+                    <label>Name</label>
+                    <a class="button" style="float: right"
+                       onclick="return GLITTERWOOD.panels['bio'].suggest_name()">Suggest</a>
+                    <input type="text" name="bio[name]" id="bio_name" style="width: 180px"
+                           onchange="GLITTERWOOD.panels['bio'].bio_validate()"
+                           onkeydown="GLITTERWOOD.panels['bio'].bio_validate()"/>
+                </p>
+
+                <p>
+                    <button type="reset" name="cancel" onclick="$('#bio_form').hide()">Oops! Switch Gender</button>
+                    <button name="continue" id="bio_continue" type="submit" style="float: right; display: none">
+                        Continue
+                    </button>
+                </p>
+            </div>
+        </form>
+
+        <form id="trait_form" style="display: none; position: absolute; width: 100%">
+            <div class="dialog">
+                <p>
+                    <label>Trait</label>
+                    <input type="text" name="bio[trait]" id="type_name" style="width: 180px" readonly="readonly"/>
+                </p>
+
+                <p id="trait_notes"></p>
+
+                <p>
+                    <button type="reset" name="cancel" onclick="$('#trait_form').hide()">Maybe not...</button>
+                    <button name="continue" id="triat_continue" type="submit" style="float: right">
+                        Continue
+                    </button>
+                </p>
+        </form>
+    </div>
+</div>
+</div>
+
+<script id="bio-template" type="text/x-handlebars-template">
+    <b>Name:</b> {{ name }} ({{ gender }})
+</script>
+
+<script id="type-template" type="text/x-handlebars-template">
+    <b>Type:</b> {{type}}
+</script>
+
+<script id="icon-choice-template" type="text/x-handlebars-template">
+    <form style="position: absolute; width: 100%">
+<div class="dialog">
+       <h3>Icon</h3>
+       <img src="{{ lg.source }}" height="{{ lg.height }}" width="{{ lg.width }}" />
+</div>
+    </form>
+    <br clear="all" />
+</script>
+
+<script id="icon-template" type="text/x-handlebars-template">
+    <br clear="all"/>
+
+    <h3>Icon</h3>
+    <p><small>Choose from your profile pictures</small></p>
+
+    {{#each icons}}
+    <div class="two columns">
+        <div class="icon_button m{{round10 height }}" onclick="choose_icon('{{ source }}', {{height}}, {{width}}, '{{ lg.source }}', {{lg.height }}, {{lg.width}} )"
+             style="background-image: url({{ source }})">Select</div>
+    </div>
+    {{/each}}
+    <br clear="all" />
+    <p>You can change the avatar icon later if you want...</p>
+</script>
+
+        <style>
+            .icon_choice {
+            }
+            .icon_button {
+                background-color: rgb(100, 100, 100);
+                width: 100px;
+                height: 150px;
+                background-repeat: no-repeat;
+                background-position: center 20px;
+                padding: 2px;
+                font-size: 80%;
+                font-weight: bold;
+                text-align: center;
+
+                -webkit-border-radius: 4px;
+
+                border-radius: 4px;
+
+                border: 1px solid black;
+                margin: 0.5em;
+            }
+            .icon_button:hover {
+                background-color: black
+            }
+            .icon_choice:hover {
+                background-color: rgb(100, 100, 100);
+            }
+
+            @media only screen and (max-width: 767px) {
+
+                .m50 {
+                    height: 50px;
+                }
+
+                .m60 {
+                    height: 60px;
+                }
+                .m70 {
+                    height: 70px;
+                }
+
+                .m80 {
+                    height: 80px;
+                }
+
+                .m90 {
+                    height: 90px;
+                }
+
+                .m100 {
+                    height: 100px;
+                }
+
+                .m110 {
+                    height: 110px;
+                }
+
+                .m120 {
+                    height: 120px;
+                }
+
+                .m130 {
+                    height: 130px;
+                }
+
+                .m140 {
+                    height: 140px;
+                }
+
+                .m150 {
+                    height: 150px;
+                }
+
+
+                .m160 {
+                    height: 160px;
+                }
+
+                .m170 {
+                    height: 170px;
+                }
+
+
+                .m180 {
+                    height: 180px;
+                }
+
+
+                .m170 {
+                    height: 170px;
+                }
+
+
+                .m190 {
+                    height: 190px;
+                }
+
+
+                .m200 {
+                    height: 200px;
+                }
+
+                .m210 {
+                    height: 210px;
+                }
+
+                .m220 {
+                    height: 220px;
+                }
+
+                .m230 {
+                    height: 230px;
+                }
+
+                .m240 {
+                    height: 240px;
+                }
+
+                .m250 {
+                    height: 250px;
+                }
+
+
+                .m260 {
+                    height: 260px;
+                }
+
+                .m270 {
+                    height: 270px;
+                }
+
+
+                .m280 {
+                    height: 280px;
+                }
+
+
+                .m270 {
+                    height: 270px;
+                }
+
+
+                .m290 {
+                    height: 290px;
+                }
+
+
+                .m200 {
+                    height: 200px;
+                }
+
+
+            }
+        </style>
+
+<script type="text/javascript" src="/js/gw/actor/create.js">
+
+</script>

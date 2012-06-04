@@ -1,0 +1,6 @@
+{
+    "route": "/",
+    "method": "*",
+    "get_route": "/",
+    "post_route": "/"
+}

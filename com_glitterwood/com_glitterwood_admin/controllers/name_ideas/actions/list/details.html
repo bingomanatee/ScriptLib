@@ -1,0 +1,106 @@
+<!-- -----------------------------------  DETAIL ----------------------------------- -->
+
+<section>
+
+    <div class="container_12" id="detail" style="display: none">
+        <div class="box">
+            <h2>Name Idea Detail
+                <span class="l"></span>
+                <span class="r"></span>
+            </h2>
+            <span id="row_detail"></span>
+            <section class="form_row button_row textcenter" xmlns="http://www.w3.org/1999/html">
+
+                <div class="grid_6">
+                    <div class="block_content">
+                        <a class="button medium orange" onclick="edit_tt()"
+                                >Edit
+                        </a>
+                    </div>
+                </div>
+
+                <div class="grid_6">
+                    <div class="block_content">
+                        <a class="button medium red"
+                                >Delete
+                        </a>
+                    </div>
+                </div>
+
+                <div class="clear"></div>
+            </section>
+
+        </div>
+    </div>
+
+    <div class="clear"></div>
+</section>
+
+
+<script type="text/javascript">
+    var current_tt;
+
+    function edit_tt() {
+        document.location = '/admin/gw/name_ideas/' + current_tt._id + '/edit';
+    }
+
+    jQuery(document).ready(function () {
+        var oTable = $('#name_idea_list').dataTable({
+            "bJQueryUI":true,
+            "sPaginationType":"full_numbers",
+            "sAjaxSource":"/admin/gw/name_ideas/list.json",
+            "bProcessing":true,
+            "bServerSide":true,
+            "paginate":true
+        });
+
+        /* Add events */
+        $('#name_idea_list tbody tr').live('click', function () {
+            var nTds = $('td', this);
+            var id = $(nTds[0]).text();
+            jQuery.getJSON("/admin/gw/game_ideas/" + id + '.json', function (data) {
+                current_tt = data;
+
+                $('#detail').show();
+                $('#detail__id').html(data['_id']);
+                $('#detail_name').html(data['name']);
+                $('#detail_gender').html(data['gender']);
+                $('#detail_place').html(data['place']);
+            });
+        });
+
+        var row_template = _.template((' <section class="prop_row"><div class="grid_3">' +
+                '<div class="block_content right"> <b>{{- label }}</b></div></div>' +
+                '<div class="grid_9"><div class="block_content" id="{{- id }}">' +
+                '{{= value }}</div></div>' +
+                '<div class="clear"></div></section>').replace(/~/g, '%'));
+
+        var stats_template = _.template('<b>{{- label }}</b>:  <span style="font-size: 200%" id="{{- id ' + '%' +
+                '>">...</span><br clear="all"/>');
+
+        var stats_rows = _.map(['Looks', 'Charm', 'Talent', 'Smarts', 'Stamina'],
+                function (label) {
+                    return {label:label, id:'detail_' + label.toLowerCase()}
+                })
+
+        console.log('stats_rows: ', stats_rows);
+
+        var h = '';
+        var stats = stats_rows.forEach(function (st) {
+            h += (stats_template(st));
+        });
+
+        var r = '';
+        [
+            {label:'_id', id:'detail__id', value:'...'},
+            {label:'Name', id:'detail_name', value:'...'},
+            {label:'Gender', id:'detail_gender', value:'...'},
+            {label:'Place', id:'detail_place', value:'...'}
+        ].forEach(function (row_detail) {
+            r += (row_template(row_detail));
+        })
+
+        console.log(r);
+        $('#row_detail').html(r);
+    });
+</script>

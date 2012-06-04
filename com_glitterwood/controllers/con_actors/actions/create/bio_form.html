@@ -1,0 +1,37 @@
+<p style="margin-bottom: 2px;"><label>Name</label>
+    <input type="text" name="actor[name]" id="actor_name" onkeydown="validate_bio()"/>
+</p>
+<p><label>&nbsp;</label>
+    <button onclick="choose_rand_name(); validate_bio(); return false" onchange="validate_bio()">Suggest a
+        Name
+    </button>
+</p>
+
+<p class="gender_row">
+    <label>Gender</label>
+
+<div style="background-image: url(/img/gw/bio/female.png);"
+     onclick="set_gender('female'); validate_bio(); "
+     id="female_icon"
+     class="gender_icon active_g">
+    <input type="radio" name="actor[gender]" class="rc" id="female_rb" value="female"
+           checked="checked"/>
+    Female
+</div>
+<div style="background-image: url(/img/gw/bio/male.png);"
+     onclick="set_gender('male');validate_bio(); "
+     id="male_icon"
+     class="gender_icon">
+    <input type="radio" name="actor[gender]" class="rc" id="male_rb" value="male"/>Male
+</div>
+</p>
+
+<p><label>Age</label>
+    <span style="color: grey">18</span>
+    <input type="range" name="actor[age_range]"
+           onchange="$('#age_display').val($(this).val()); validate_bio(); "
+           min="18" max="30" value="18" style="width: 250px"/>
+    <span style="color: grey">30</span>&nbsp;&nbsp;&nbsp;
+    <input type="text" name="actor[age]" id="age_display" onchange="validate_bio()"
+           style="font-size: 150%;width:3em" value="18"/>
+</p>

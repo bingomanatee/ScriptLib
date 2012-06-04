@@ -1,0 +1,149 @@
+<!-- -----------------------------------  FORM ----------------------------------- -->
+
+<form action="/admin/gw/name_ideas/" method="post">
+    <section>
+        <div class="container_12">
+            <div class="box">
+                <h2>Add Names</h2>
+
+                <span id="form_row_detail"></span>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </section>
+</form>
+
+<script id="row-template" type="text/x-handlebars-template">
+    {{#each rows }}
+    <section class="form_row">
+        <div class="grid_3">
+            <div class="block_content right"><b>{{{ label }}}</b></div>
+        </div>
+        <div class="grid_9">
+            <div class="block_content">
+                {{{field data }}}
+            </div>
+        </div>
+        <div class="clear"></div>
+    </section>
+    {{/each}}
+</script>
+
+<script id="field-template-textarea" type="text/x-handlebars-template">
+    <textarea id="{{ id }}" name="{{ name }}" style="width: 100%"></textarea>
+</script>
+
+<script id="field-template-text" type="text/x-handlebars-template">
+    <input type="text" id="{{ id }}" name="{{ name }}"/>
+</script>
+
+<script id="field-template-radio" type="text/x-handlebars-template">
+    {{#each buttons}}
+
+    <input type="radio" id="{{ id }}" name="{{ name }}" value="{{ value }}"
+    {{#if checked}} checked="checked" {{/if}} />
+    {{ label }}
+    <br/>
+    {{/each}}
+</script>
+
+<script id="form-buttons" type="text/x-handlebars-template">
+    <section class="form_row button_row textcenter" xmlns="http://www.w3.org/1999/html">
+        {{#each buttons }}
+        <div class="grid_{{ cells }}">
+            <div class="block_content">
+                {{#if type }}
+                <button class="button medium {{ classes }}" type="{{ type }}"
+                {{#if action}} action="{{action}}" {{/if }} >{{label}}</button>
+                {{/if }}
+                {{#unless type }}
+                <a class="button medium {{ classes }}" onclick="{{ action }}">{{ label }}</a>
+                {{/unless }}
+            </div>
+        </div>
+        {{/each}}
+        <div class="clear"></div>
+    </section>
+</script>
+
+<script language="javascript">
+    $(function () {
+
+        var rows_template = Handlebars.compile($('#row-template').html());
+        var radio_template = Handlebars.compile($('#field-template-radio').html());
+        var textarea_template = Handlebars.compile($('#field-template-textarea').html());
+        var textfield_template = Handlebars.compile($('#field-template-text').html());
+        var form_buttons_template = Handlebars.compile($('#form-buttons').html());
+
+        Handlebars.registerHelper('field', function (f) {
+            var a = [].slice.call(arguments, 0);
+            console.log('field: ', f, a);
+            switch (f.field_type) {
+                case 'textarea':
+                    return textarea_template(f);
+                    break;
+
+                case 'radio':
+                    return radio_template(f);
+                    break;
+
+                default:
+                    return textfield_template(f);
+            }
+        });
+
+        var row_data = {rows:[
+            {data:{name:'name_ideas[names]', id:'new_names_name', field_type:'textarea'},
+                label:'New Names<br /><small>seperate names by commas.</small>'},
+            {data:{name:'name_ideas[gender]', id:'new_names_gender',
+                buttons:[
+                    {
+                        id:'new_names_gender_female',
+                        name:'name_ideas[gender]',
+                        value:'female',
+                        checked:true,
+                        label:'Female'
+                    },
+                    {
+                        id:'new_names_gender_male',
+                        name:'name_ideas[gender]',
+                        value:'male',
+                        label:'Male'
+                    },
+                    {
+                        id:'new_names_gender_either',
+                        name:'name_ideas[gender]',
+                        value:'either',
+                        label:'Either'
+                    },
+                    {
+                        id:'new_names_gender_last',
+                        name:'name_ideas[gender]',
+                        value:'last',
+                        label:'Last'
+                    }
+                ],
+                field_type:'radio'},
+                label:'Gender'
+            }
+        ]};
+
+        var button_data = {
+            buttons:[
+                {
+                    cells:12,
+                    classes:'orange',
+                    label:'Add Names',
+                    type:'submit',
+                    action:''
+                }
+            ]
+        }
+
+        function add_names() {
+            return false;
+        }
+
+        $('#form_row_detail').html(rows_template(row_data) + form_buttons_template(button_data));
+    })
+</script>

@@ -1,0 +1,16 @@
+{
+    "javascript":[
+        "/js/gw/libs/kinetic/kinetic-v3.9.5.js",
+        "/js/gw/index.js",
+        "/js/gw/actor/traits/_Dragger.js",
+        "/js/gw/actor/traits/_Feedback.js",
+        "/js/gw/actor/traits/Traits.js",
+        "/js/gw/actor/traits/Templates.js",
+        "/js/gw/actor/personality/_Scale.js",
+        "/js/gw/actor/personality/Personality.js",
+        "/js/gw/actor/load.js",
+        "/js/gw/actor/bio/rand_name.js"
+    ],
+    "method":"*",
+    "get_route":"/actor/0/create"
+}

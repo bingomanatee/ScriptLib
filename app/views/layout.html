@@ -1,0 +1,30 @@
+<html>
+<head>
+    <% javascript.forEach(function(js, i){ %>
+    <script language="javascript" src="<%= js %>">
+        <%= i %>
+    </script>
+    <% }) %>
+
+    <% css.forEach(function(c) { %>
+    <link href="<%= c %>" media="all" rel="stylesheet" type="text/css"/>
+    <% }) %>
+
+</head>
+<body>
+<div id="fb-root"></div>
+<%- helpers.flash() %>
+<h1>Member Test</h1>
+<% if (current_member) { %>
+<% if (!current_member.id){ %>
+<p><%= current_member.name %> (<a href="/sign_out">Sign Out</a>)</p>
+<% } %>
+<fb:login-button autologoutlink="true"></fb:login-button>
+<% } else { %>
+<a href="/sign_in">Sign In</a>
+<fb:login-button autologoutlink="true"></fb:login-button>
+<% } %>
+<%- body %>
+<script type="text/javascript" src="/js/fb_auth.js"></script>
+</body>
+</html>

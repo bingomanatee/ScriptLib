@@ -1,0 +1,26 @@
+<span class="ng-app">
+    <h1>Scripts</h1>
+
+<div ng-controller="ScriptCtrl">
+    [ <a href="" ng-click="archive()">archive</a> ]
+    <ul class="unstyled" ng-repeat="script in scripts">
+        <li>
+            <b>{{script.title}}</b> {{script.summary}}
+        </li>
+    </ul>
+    <form ng-submit="add_script()">
+        <label>Name</label>
+        <input type="text" ng-model="scriptName" size="30"
+               placeholder="scriptName"><br/>
+        <label>Genres</label>
+
+        <input type="text" ng-model="scriptGenres" size="30"
+               placeholder="scriptGenres"><br/>
+
+        <label>Summary</label>
+        <textarea ng-model="scriptSummary"></textarea><br/>
+
+        <button class="btn-primary" type="submit">Add Script</button>
+    </form>
+</div>
+</span>

@@ -1,0 +1,21 @@
+<section class="form_row" xmlns="http://www.w3.org/1999/html">
+    <div class="grid_3">
+        <div class="block_content right">
+            <label><%- textField.label %></label></div>
+    </div>
+    <div class="grid_9">
+        <div class="block_content">
+            <% if (textField.field_type == 'textarea') { %>
+            <textarea class="i-format default" id="<%= textField.id %>"
+            <% if (textField.readonly){ %> readonly="readonly" <% } %>
+            name="<%= textField.name %>" ><%= textField.value %></textarea>
+            <% } else { %>
+
+            <input type="<%= typeof field_type == 'undefined' ? 'text' : type %>" class="i-format" id="<%= textField.id %>"
+            <% if (textField.readonly){ %> readonly="readonly" <% } %>
+            name="<%= textField.name %>" value="<%= textField.value %>">
+            <% } %>
+        </div>
+    </div>
+    <div class="clear"></div>
+</section>

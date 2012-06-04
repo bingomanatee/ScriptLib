@@ -1,0 +1,43 @@
+<%- helpers.banner_menu('Manage Members', 'member_admin_menu', 'admin_members_tasks') %>
+
+<div class="box form_box">
+
+    <h2>Edit Task Subject
+        <span class="l"></span>
+        <span class="r"></span>
+    </h2>
+
+    <div class="block">
+        <form action="/admin/member_task/<%= task._id %>/edit" class="form_place" method="POST" onsubmit="return check_form(this)">
+            <input type="hidden" name="task[_id]" value="<%- task._id %>" />
+            <section class="grid_7">
+                <%- partial('form/text_field.html', [{
+                id: 'task_form_name',
+                name: 'task[name]]',
+                label: 'Name',
+                readonly: true,
+                value: task[name]
+                },
+                {
+                id: 'task_form_label',
+                name: 'task[label]',
+                value: task.label,
+                label: 'Label'
+                }
+                ] ) %>
+
+                <%- partial('form/button_row.html', [
+                {class_name: 'medium', label: 'Return to list', link: '/admin/member_tasks'},
+                {class_name: 'medium orange', label: 'save', type: 'submit'},
+                {class_name: 'medium red', label: 'Delete', link: '/admin/member_tasks/<%= task._id %>/delete'}
+                ]) %>
+
+            </section>
+        </form>
+    </div>
+</div>
+
+        <pre>
+
+            <%= JSON.stringify(task) %>
+        </pre>

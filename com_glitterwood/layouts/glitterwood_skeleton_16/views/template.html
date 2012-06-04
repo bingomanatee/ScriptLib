@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]>
+<html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>
+<html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>
+<html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en"> <!--<![endif]-->
+<head>
+
+    <!-- Basic Page Needs
+   ================================================== -->
+    <meta charset="utf-8">
+    <title>Your Page Title Here :)</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Mobile Specific Metas
+   ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- CSS
+   ================================================== -->
+    <link rel="stylesheet" href="/gwlos/css/base.css">
+    <link rel="stylesheet" href="/gwlos/css/skeleton.css">
+    <link rel="stylesheet" href="/gwlos/css/layout.css">
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Favicons
+     ================================================== -->
+    <link rel="shortcut icon" href="/gwlos/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/gwlos/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/gwlos/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/gwlos/img/apple-touch-icon-114x114.png">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/js/gwlo/libs/jquery-1.7.2.min.js"><\/script>')</script>
+</head>
+<body>
+<div id="fb-root"></div>
+<header>
+    <img id="logo" src="/gwlos/img/logo.png"/>
+
+    <div style="float: right"><% if (current_member) { %>
+        <% if (!current_member.id){ %>
+        <p><%= current_member.name %> (<a href="/sign_out">Sign Out</a>)</p>
+        <% } %>
+        <% } else { %>
+        <a href="/sign_in">Sign In</a>
+        <% } %>
+        <fb:login-button autologoutlink="true"></fb:login-button>
+    </div>
+    <br clear="both"/>
+</header>
+<!-- Primary Page Layout
+    ================================================== -->
+
+<!-- Delete everything in this .container and get started on your own site! -->
+
+<div class="container container-twelve">
+    <%- body %>
+</div>
+<!-- container -->
+
+<!-- JS
+    ================================================== -->
+<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script src="/gwlos/js/tabs.js"></script>
+<script type="text/javascript" src="/js/fb/auth.js">
+
+ window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '195491160487496',
+                status     : true,
+                cookie     : true,
+                xfbml      : true,
+                oauth      : true
+            });
+        };
+        (function(d){
+            var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+            js = d.createElement('script'); js.id = id; js.async = true;
+            js.src = "//connect.facebook.net/en_US/all.js";
+            d.getElementsByTagName('head')[0].appendChild(js);
+        }(document));
+</script>
+<% javascript.forEach(function(js, i){ %>
+<script language="javascript" src="<%= js %>">
+    <
+    %= i % >
+</script>
+<% }) %>
+
+<!-- End Document
+================================================== -->
+</body>
+</html>

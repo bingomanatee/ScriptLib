@@ -1,0 +1,66 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<title>Glitterwood</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" type="text/css" href="/css/gwlo/reset.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/css/gwlo/text.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/css/gwlo/grid.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/css/gwlo/layout.css" media="screen" />
+    <link rel="stylesheet"  media="screen" href="/css/gwlo/nav.css" media="screen" />
+    <% css.forEach(function(c) { %>
+    <link href="<%= c %>" media="all" rel="stylesheet" type="text/css"/>
+    <% }) %>
+
+	<script src="/js/gw/libs/modernizr-2.5.3.min.js"></script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/js/gwlo/libs/jquery-1.7.2.min.js"><\/script>')</script>
+
+</head>
+<body>
+<div id="fb-root"></div>
+<header>
+<img id="logo" src="/img/gwlo/logo.png" />
+    <div style="float: right"><% if (current_member) { %>
+        <% if (!current_member.id){ %>
+        <p><%= current_member.name %> (<a href="/sign_out">Sign Out</a>)</p>
+        <% } %>
+        <% } else { %>
+        <a href="/sign_in">Sign In</a>
+        <% } %>
+        <fb:login-button autologoutlink="true"></fb:login-button>
+    </div>
+    <br clear="both" />
+</header>
+<div role="main">
+    <%- body %>
+</div>
+<footer>
+
+</footer>
+
+<!-- scripts concatenated and minified via ant build script-->
+<script src="/js/gwlo/plugins.js"></script>
+<script src="/js/gwlo/script.js"></script>
+<script type="text/javascript" src="/js/fb_auth.js"></script>
+<!-- end scripts-->
+
+<% javascript.forEach(function(js, i){ %>
+<script language="javascript" src="<%= js %>">
+    <%= i %>
+</script>
+<% }) %>
+
+</body>
+</html>

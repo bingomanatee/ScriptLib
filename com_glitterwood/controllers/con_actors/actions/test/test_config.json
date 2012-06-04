@@ -1,0 +1,8 @@
+{
+    "javascript":[
+        "/js/gw/libs/kinetic/kinetic-v3.9.5.js",
+        "/js/gw/index.js",
+        "/js/gw/actor/avatar/Body.js"
+    ],
+    "route":"/test"
+}

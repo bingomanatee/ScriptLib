@@ -1,0 +1,86 @@
+<%- helpers.banner_menu('Manage Members', 'member_admin_menu', 'admin_members_task') %>
+
+<div class="block"><h1>Tasks</h1>
+    <table class="display" id="task_list">
+        <thead>
+        <th>_id</th>
+        <th>name</th>
+        <th>label</th>
+        </thead>
+        <tbody>
+        <tr>
+            <td>loading data...</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <th>_id</th>
+        <th>name</th>
+        <th>label</th>
+        </tfoot>
+    </table>
+</div>
+
+<div class="box form_box">
+
+    <h2>New Task Subject
+        <span class="l"></span>
+        <span class="r"></span>
+    </h2>
+
+    <div class="block">
+        <form action="/admin/member_task/0/new" class="form_place" method="POST" onsubmit="return check_form(this)">
+
+                <%- partial('form/text_field.html', [{
+                id: 'task_form_name',
+                name: 'task[name]',
+                label: 'Name',
+                value: task.name
+                },
+                {
+                id: 'task_form_label',
+                name: 'task[label]',
+                value: task.label,
+                label: 'Label'
+                }
+                ] ) %>
+
+            <%- partial('form/button_row.html', [
+            {class_name: 'medium orange', label: 'Create', type: 'submit'},
+            ]) %>
+
+        </form>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        var oTable = $('#task_list').dataTable({
+            "bJQueryUI":true,
+            "sPaginationType":"full_numbers",
+            "sAjaxSource":"/admin/member_tasks/list.json",
+            "bProcessing":true,
+            "bServerSide":true,
+            "paginate":true
+        });
+
+        /* Add events */
+        $('#task_list tbody tr').live('click', function () {
+            var sTitle;
+            var nTds = $('td', this);
+            var id = $(nTds[0]).text();
+            document.location = '/admin/member_task/' + id;
+        });
+    });
+
+    function check_form() {
+        var id = $('#task_form_name').val();
+        var label = $('#task_form_label').val();
+
+        if ((!id) || (id == 'new_task')) return false;
+        if ((!label) || (label == 'New Task')) return false;
+
+        return true;
+    }
+</script>
+
